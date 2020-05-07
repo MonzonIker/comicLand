@@ -53,5 +53,48 @@ public class ModeloComic extends Conector {
 		return comics;
 
 	}
+	public Comic get(int id){
+
+		Comic comic = new Comic();
+
+		try {
+
+			PreparedStatement pst = super.conexion.prepareStatement("select * from comics where id="+id);
+
+			ResultSet rs = pst.executeQuery();
+			
+			
+
+			while (rs.next()) {
+
+				
+
+				comic.setId(rs.getInt("id"));
+
+				comic.setNombre(rs.getString("nombre"));
+
+				comic.setTitulo(rs.getString("titulo"));
+				
+				comic.setNum(rs.getInt("num"));
+				
+				comic.setFecha_publicacion(rs.getDate("fecha_publicacion"));
+				
+				comic.setImagen(rs.getString("imagen"));
+				
+				comic.setNum_likes(rs.getInt("num_likes"));
+				
+				comic.setGenero_id(rs.getInt("genero_id"));
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return comic;
+
+	}
 
 }
