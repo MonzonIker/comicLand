@@ -10,6 +10,9 @@ import modelo.bean.Genero;
 
 public class ModeloGenero extends Conector {
 	
+	/**
+	 * @return
+	 */
 	public ArrayList<Genero> getAll(){
 
 		ArrayList<Genero> generos = new ArrayList<Genero>();
@@ -39,6 +42,34 @@ public class ModeloGenero extends Conector {
 		}
 
 		return generos;
+
+	}
+	
+	public Genero get(int id){
+
+		Genero genero = new Genero();
+
+		try {
+
+			PreparedStatement pst = super.conexion.prepareStatement("select * from generos where id="+id);
+
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+
+				genero.setId(rs.getInt("id"));
+
+				genero.setNombre(rs.getString("nombre"));
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return genero;
 
 	}
 

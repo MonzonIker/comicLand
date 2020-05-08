@@ -13,6 +13,7 @@ public class ModeloComic extends Conector {
 	public ArrayList<Comic> getAll(){
 
 		ArrayList<Comic> comics = new ArrayList<Comic>();
+		ModeloGenero MG = new ModeloGenero();
 
 		try {
 
@@ -38,7 +39,7 @@ public class ModeloComic extends Conector {
 				
 				comic.setNum_likes(rs.getInt("num_likes"));
 				
-				comic.setGenero_id(rs.getInt("genero_id"));
+				comic.setGenero(MG.get(rs.getInt("genero_id")));
 
 				comics.add(comic);
 
@@ -56,6 +57,7 @@ public class ModeloComic extends Conector {
 	public Comic get(int id){
 
 		Comic comic = new Comic();
+		ModeloGenero MG = new ModeloGenero();
 
 		try {
 
@@ -83,7 +85,7 @@ public class ModeloComic extends Conector {
 				
 				comic.setNum_likes(rs.getInt("num_likes"));
 				
-				comic.setGenero_id(rs.getInt("genero_id"));
+				comic.setGenero(MG.get(rs.getInt("genero_id")));
 
 			}
 

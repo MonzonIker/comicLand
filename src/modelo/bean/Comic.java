@@ -11,7 +11,7 @@ public class Comic {
 	private Date fecha_publicacion;
 	private String imagen;
 	private int num_likes;
-	private int genero_id;
+	private Genero genero;
 	
 	/**
 	 * 
@@ -21,17 +21,17 @@ public class Comic {
 	}
 
 	/**
-	 * @param id
+	 * @param id esta es la id de cada comic
 	 * @param nombre
 	 * @param titulo
 	 * @param num
 	 * @param fecha_publicacion
 	 * @param imagen
 	 * @param num_likes
-	 * @param genero_id
+	 * @param genero
 	 */
 	public Comic(int id, String nombre, String titulo, int num, Date fecha_publicacion, String imagen, int num_likes,
-			int genero_id) {
+			Genero genero) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -40,7 +40,7 @@ public class Comic {
 		this.fecha_publicacion = fecha_publicacion;
 		this.imagen = imagen;
 		this.num_likes = num_likes;
-		this.genero_id = genero_id;
+		this.genero = genero;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Comic {
 	public String toString() {
 		return "Comics [id=" + id + ", nombre=" + nombre + ", titulo=" + titulo + ", num=" + num
 				+ ", fecha_publicacion=" + fecha_publicacion + ", imagen=" + imagen + ", num_likes=" + num_likes
-				+ ", genero_id=" + genero_id + "]";
+				+ ", genero=" + genero + "]";
 	}
 
 	public int getId() {
@@ -109,12 +109,12 @@ public class Comic {
 		this.num_likes = num_likes;
 	}
 
-	public int getGenero_id() {
-		return genero_id;
+	public Genero getGenero() {
+		return genero;
 	}
 
-	public void setGenero_id(int genero_id) {
-		this.genero_id = genero_id;
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
 	
 }
