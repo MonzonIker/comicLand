@@ -98,5 +98,17 @@ public class ModeloComic extends Conector {
 		return comic;
 
 	}
+	
+	public void updateLike(Comic c1) {
+		
+		int id = c1.getId();
+		
+		try {
+			PreparedStatement pstUpdate = super.conexion.prepareStatement("update comics set num_likes=num_likes + 1 where id="+id);
+			pstUpdate.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
