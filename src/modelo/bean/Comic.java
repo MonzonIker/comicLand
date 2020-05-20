@@ -14,21 +14,23 @@ public class Comic {
 	private Genero genero;
 	
 	/**
-	 * 
+	 * Constructor simple de la clase Comic
 	 */
 	public Comic() {
 		super();
 	}
 
 	/**
-	 * @param id esta es la id de cada comic
-	 * @param nombre
-	 * @param titulo
-	 * @param num
-	 * @param fecha_publicacion
-	 * @param imagen
-	 * @param num_likes
-	 * @param genero
+	 * Constructor con parametros de la clase Comic
+	 * 
+	 * @param id es la id unica de cada comic
+	 * @param nombre es el nombre que comparte una saga de comics
+	 * @param titulo es el titulo que tiene un numero concreto
+	 * @param num es el numero de la coleccion de un comic
+	 * @param fecha_publicacion es la fecha en la que ha sido publicado el comic
+	 * @param imagen para guardar un enlace a una imgen de la portadad del comic
+	 * @param num_likes guarda la cantidad de likes que tiene un comic
+	 * @param genero es un objeto de la clase Genero con la informacion sobre el genero de un comic
 	 */
 	public Comic(int id, String nombre, String titulo, int num, Date fecha_publicacion, String imagen, int num_likes,
 			Genero genero) {
@@ -44,7 +46,7 @@ public class Comic {
 	}
 
 	/**
-	 *
+	 *Este metodo combia el printt por defecto de la clase Comic
 	 */
 	@Override
 	public String toString() {

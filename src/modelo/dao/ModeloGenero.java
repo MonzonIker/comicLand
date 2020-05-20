@@ -11,7 +11,9 @@ import modelo.bean.Genero;
 public class ModeloGenero extends Conector {
 	
 	/**
-	 * @return
+	 * Este metodo devuelbe una lista de generos que es rellenado con la informacion de la abse de datos
+	 * 
+	 * @return lista de generos
 	 */
 	public ArrayList<Genero> getAll(){
 
@@ -45,6 +47,12 @@ public class ModeloGenero extends Conector {
 
 	}
 	
+	/**
+	 * Este metodo nos recupera un Genero y su informacion que tenga el mismo id que le damos como parametro
+	 * 
+	 * @param id es la id de el genero que queremos recuperar
+	 * @return objeto de la clase Genero
+	 */
 	public Genero get(int id){
 
 		Genero genero = new Genero();

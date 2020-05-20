@@ -6,15 +6,17 @@ public class Genero {
 	private String nombre;
 	
 	/**
-	 * 
+	 * Constructor simple de la clase Genero
 	 */
 	public Genero() {
 		super();
 	}
 
 	/**
-	 * @param id
-	 * @param nombre
+	 * Constructor con parametros de la clase Genero
+	 * 
+	 * @param id guarda el id de un genero
+	 * @param nombre es el nombre del genero
 	 */
 	public Genero(int id, String nombre) {
 		super();
@@ -23,7 +25,7 @@ public class Genero {
 	}
 
 	/**
-	 *
+	 *Este metodo combia el print por defecto de la clase Genero
 	 */
 	@Override
 	public String toString() {

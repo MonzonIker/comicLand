@@ -10,6 +10,11 @@ import modelo.bean.Comic;
 
 public class ModeloComic extends Conector {
 	
+	/**
+	 * Este metodo devuelbe una lista de comics que es rellenado con la informacion de la abse de datos
+	 * 
+	 * @return lista de comics
+	 */
 	public ArrayList<Comic> getAll(){
 
 		ArrayList<Comic> comics = new ArrayList<Comic>();
@@ -54,6 +59,12 @@ public class ModeloComic extends Conector {
 		return comics;
 
 	}
+	/**
+	 * Este metodo nos recupera un Comic y su informacion que tenga el mismo id que le damos como parametro
+	 * 
+	 * @param id es la id de el comic que queremos recuperar
+	 * @return objeto de la clase Comic
+	 */
 	public Comic get(int id){
 
 		Comic comic = new Comic();
@@ -99,6 +110,11 @@ public class ModeloComic extends Conector {
 
 	}
 	
+	/**
+	 * Este metodo actualiza el numerod e likes de el Comic que le demos como parametros en la base de datos
+	 * 
+	 * @param c1 es un objeto de clse Comic
+	 */
 	public void updateLike(Comic c1) {
 		
 		int id = c1.getId();
@@ -109,6 +125,21 @@ public class ModeloComic extends Conector {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Este metodo elimina de la base de datos el comic que tenga la id que le damos como parametro
+	 * 
+	 * @param id la id del comic
+	 */
+	public void delete(int id) {
+		try {
+			 PreparedStatement pstDelete = conexion.prepareStatement("DELETE FROM comics WHERE id = ?");
+			 pstDelete.setInt(1, id);
+			 pstDelete.execute();
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 
 }

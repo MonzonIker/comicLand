@@ -1,30 +1,26 @@
 package api;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import modelo.bean.Comic;
 import modelo.dao.ModeloComic;
 
 /**
- * Servlet implementation class ApiSumarLike
+ * Servlet implementation class ApiDeleteComic
  */
-@WebServlet("/ApiSumarLike")
-public class ApiSumarLike extends HttpServlet {
+@WebServlet("/ApiDeleteComic")
+public class ApiDeleteComic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApiSumarLike() {
+    public ApiDeleteComic() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,20 +37,15 @@ public class ApiSumarLike extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 		
 		int id =Integer.parseInt(request.getParameter("id"));
-		Comic comic = new Comic();
-        comic.setId(id);
-        System.out.print(comic);
+		// crear usuario
         ModeloComic mComic = new ModeloComic();
-        mComic.updateLike(comic);
+        mComic.delete(id);
         response.setHeader("Access-Control-Allow-Origin","*");
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_OK);
-        
-		
 	}
 
 }
