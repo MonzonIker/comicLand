@@ -1,26 +1,34 @@
 package api;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import modelo.bean.Comic;
+import modelo.bean.Genero;
 import modelo.dao.ModeloComic;
+import modelo.dao.ModeloGenero;
 
 /**
- * Servlet implementation class ApiDeleteComic
+ * Servlet implementation class ApiInsertComic
  */
-@WebServlet("/ApiDeleteComic")
-public class ApiDeleteComic extends HttpServlet {
+@WebServlet("/ApiInsertComic")
+public class ApiInsertComic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApiDeleteComic() {
+    public ApiInsertComic() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,10 +47,33 @@ public class ApiDeleteComic extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		int id =Integer.parseInt(request.getParameter("id"));
-		// crear usuario
+		String jsonUsuario = request.getParameter("comic");
+		JSONObject jsonObject = new JSONObject(jsonUsuario);
+		Date fecha = null;
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			fecha = formato.parse(jsonObject.getString("fecha_publicacion"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+        
+        Comic c1 = new Comic();
+        c1.setNombre(jsonObject.getString("nombre"));
+        c1.setTitulo(jsonObject.getString("titulo"));
+        c1.setNum(Integer.parseInt(jsonObject.getString("num")));
+        c1.setFecha_publicacion(fecha);
+        c1.setImagen(jsonObject.getString("imagen"));
+        c1.setNum_likes(Integer.parseInt(jsonObject.getString("num_likes")));
+        ModeloGenero MG = new ModeloGenero();
+        Genero g1 = MG.get(Integer.parseInt(jsonObject.getString("genero_id")));
+        c1.setGenero(g1);
+        
+        System.out.print(c1);
+        
         ModeloComic mComic = new ModeloComic();
-        mComic.delete(id);
+        mComic.insert(c1);
         response.setHeader("Access-Control-Allow-Origin","*");
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_OK);

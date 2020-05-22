@@ -141,5 +141,52 @@ public class ModeloComic extends Conector {
             e.printStackTrace();
         }
 	}
+	
+	/**
+	 * Este metodo crea una nueva entrada en la base de datos con informacion de un comic
+	 * 
+	 * @param c1 es de clase Comic y guarda la info de un comic
+	 */
+	public void insert(Comic c1) {
+		java.util.Date utilData = c1.getFecha_publicacion();
+		java.sql.Date sqlData = new java.sql.Date(utilData.getTime());
+		try {
+			 PreparedStatement pstDelete = conexion.prepareStatement("CALL spInsertComic(?,?,?,?,?,?,?)");
+			 pstDelete.setString(1, c1.getNombre());
+			 pstDelete.setString(2, c1.getTitulo());
+			 pstDelete.setInt(3, c1.getNum());
+			 pstDelete.setDate(4, sqlData);
+			 pstDelete.setString(5, c1.getImagen());
+			 pstDelete.setInt(6, c1.getNum_likes());
+			 pstDelete.setInt(7, c1.getGenero().getId());
+			 pstDelete.execute();
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	/**
+	 * Este metodo actualiza la informacion de un comic existente en la base de datos
+	 * 
+	 * @param c1 es de tipo Comic y tiene la indormacion a actualizar
+	 */
+	public void update(Comic c1) {
+		java.util.Date utilData = c1.getFecha_publicacion();
+		java.sql.Date sqlData = new java.sql.Date(utilData.getTime());
+		try {
+			 PreparedStatement pstDelete = conexion.prepareStatement("CALL spUpdateComic(?,?,?,?,?,?,?,?)");
+			 pstDelete.setInt(1, c1.getId());
+			 pstDelete.setString(2, c1.getNombre());
+			 pstDelete.setString(3, c1.getTitulo());
+			 pstDelete.setInt(4, c1.getNum());
+			 pstDelete.setDate(5, sqlData);
+			 pstDelete.setString(6, c1.getImagen());
+			 pstDelete.setInt(7, c1.getNum_likes());
+			 pstDelete.setInt(8, c1.getGenero().getId());
+			 pstDelete.execute();
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
 
 }
